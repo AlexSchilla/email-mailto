@@ -1,27 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <head>
-  <meta charset="utf-8">
-  <title>Invia Email</title>
-  <script>
-    const params = new URLSearchParams(window.location.search);
-
-    const subject = params.get("subject") || "Preventivo antifurto | Mii-Alarm";
-    const body = params.get("body") || "In allegato il preventivo.";
-
-    const mailto =
-      "mailto:?subject=" + encodeURIComponent(subject) +
-      "&body=" + encodeURIComponent(body);
-
-    window.location.href = mailto;
-  </script>
+  <meta charset="UTF-8">
+  <title>Invio Email</title>
 </head>
 <body>
-  <p>Se l’email non si apre automaticamente:</p>
-  <a id="fallback">Clicca qui</a>
 
-  <script>
-    document.getElementById("fallback").href = mailto;
-  </script>
+<script>
+  // ⚠️ QUI INCOLLEREMO I DATI DAL BOT (step 3.3)
+  const subject = "Preventivo antifurto | Mii-Alarm";
+  const body = "Apri l'email...";
+
+  const mailto = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+  window.location.href = mailto;
+</script>
+
+<p>Se l'email non si apre automaticamente, <a id="fallback" href="#">clicca qui</a>.</p>
+
+<script>
+  document.getElementById("fallback").href = mailto;
+</script>
+
 </body>
 </html>

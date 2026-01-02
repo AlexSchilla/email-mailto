@@ -4,14 +4,24 @@
   <meta charset="utf-8">
   <title>Invia Email</title>
   <script>
-    window.location.href =
-      "mailto:?subject=Preventivo antifurto | Mii-Alarm";
+    const params = new URLSearchParams(window.location.search);
+
+    const subject = params.get("subject") || "Preventivo antifurto | Mii-Alarm";
+    const body = params.get("body") || "In allegato il preventivo.";
+
+    const mailto =
+      "mailto:?subject=" + encodeURIComponent(subject) +
+      "&body=" + encodeURIComponent(body);
+
+    window.location.href = mailto;
   </script>
 </head>
 <body>
   <p>Se l’email non si apre automaticamente:</p>
-  <a href="mailto:?subject=Preventivo antifurto | Mii-Alarm">
-    clicca qui
-  </a>
+  <a id="fallback">Clicca qui</a>
+
+  <script>
+    document.getElementById("fallback").href = mailto;
+  </script>
 </body>
 </html>
